@@ -220,12 +220,6 @@ public class CAPSPageMenu: UIViewController, UIScrollViewDelegate, UIGestureReco
         
         self.view.addSubview(controllerScrollView)
         
-        let controllerScrollView_constraint_H:Array = NSLayoutConstraint.constraintsWithVisualFormat("H:|[controllerScrollView]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
-        let controllerScrollView_constraint_V:Array = NSLayoutConstraint.constraintsWithVisualFormat("V:|[controllerScrollView]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
-        
-        self.view.addConstraints(controllerScrollView_constraint_H)
-        self.view.addConstraints(controllerScrollView_constraint_V)
-        
         // Set up menu scroll view
         menuScrollView.setTranslatesAutoresizingMaskIntoConstraints(false)
         
@@ -238,6 +232,12 @@ public class CAPSPageMenu: UIViewController, UIScrollViewDelegate, UIGestureReco
         
         self.view.addConstraints(menuScrollView_constraint_H)
         self.view.addConstraints(menuScrollView_constraint_V)
+        
+        let controllerScrollView_constraint_H:Array = NSLayoutConstraint.constraintsWithVisualFormat("H:|[controllerScrollView]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+        let controllerScrollView_constraint_V:Array = NSLayoutConstraint.constraintsWithVisualFormat("V:|[menuScrollView][controllerScrollView]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+        
+        self.view.addConstraints(controllerScrollView_constraint_H)
+        self.view.addConstraints(controllerScrollView_constraint_V)
         
         // Add hairline to menu scroll view
         if addBottomMenuHairline {
@@ -723,7 +723,7 @@ public class CAPSPageMenu: UIViewController, UIScrollViewDelegate, UIGestureReco
         
         newVC.willMoveToParentViewController(self)
         
-        newVC.view.frame = CGRectMake(self.view.frame.width * CGFloat(index), menuHeight, self.view.frame.width, self.view.frame.height - menuHeight)
+        newVC.view.frame = CGRectMake(self.view.frame.width * CGFloat(index),  0, self.view.frame.width, self.view.frame.height - menuHeight)
         
         self.addChildViewController(newVC)
         self.controllerScrollView.addSubview(newVC.view)
