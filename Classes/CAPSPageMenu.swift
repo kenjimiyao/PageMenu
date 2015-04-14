@@ -798,7 +798,7 @@ public class CAPSPageMenu: UIViewController, UIScrollViewDelegate, UIGestureReco
             }
             
             for view : UIView in controllerScrollView.subviews as! [UIView] {
-                view.frame = CGRectMake(self.view.frame.width * CGFloat(currentPageIndex), menuHeight, controllerScrollView.frame.width, self.view.frame.height - menuHeight)
+                view.frame = CGRectMake(self.view.frame.width * CGFloat(currentPageIndex), 0, controllerScrollView.frame.width, self.view.frame.height - menuHeight)
             }
             
             var xOffset : CGFloat = CGFloat(self.currentPageIndex) * controllerScrollView.frame.width
