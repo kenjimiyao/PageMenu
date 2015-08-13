@@ -322,7 +322,7 @@ public class CAPSPageMenu: UIViewController, UIScrollViewDelegate, UIGestureReco
                     
                     menuItemWidth = itemWidthRect.width
                     
-                    menuItemFrame = CGRectMake(totalMenuItemWidthIfDifferentWidths + menuMargin + (menuMargin * index), 0.0, menuItemWidth, menuHeight)
+                    menuItemFrame = CGRectMake(totalMenuItemWidthIfDifferentWidths + menuMargin / 2.0 + (menuMargin * index), 0.0, menuItemWidth, menuHeight)
                     
                     totalMenuItemWidthIfDifferentWidths += itemWidthRect.width
                     menuItemWidths.append(itemWidthRect.width)
@@ -393,7 +393,7 @@ public class CAPSPageMenu: UIViewController, UIScrollViewDelegate, UIGestureReco
         if useMenuLikeSegmentedControl {
             selectionIndicatorFrame = CGRectMake(0.0, menuHeight - selectionIndicatorHeight, self.view.frame.width / CGFloat(controllerArray.count), selectionIndicatorHeight)
         } else if menuItemWidthBasedOnTitleTextWidth {
-            selectionIndicatorFrame = CGRectMake(menuMargin, menuHeight - selectionIndicatorHeight, menuItemWidths[0], selectionIndicatorHeight)
+            selectionIndicatorFrame = CGRectMake(0.0, menuHeight - selectionIndicatorHeight, menuItemWidths[0] + menuMargin, selectionIndicatorHeight)
         } else {
             if centerMenuItems  {
                 selectionIndicatorFrame = CGRectMake(startingMenuMargin + menuMargin, menuHeight - selectionIndicatorHeight, menuItemWidth, selectionIndicatorHeight)
@@ -598,8 +598,7 @@ public class CAPSPageMenu: UIViewController, UIScrollViewDelegate, UIGestureReco
                     selectionIndicatorX = CGFloat(pageIndex) * (self.view.frame.width / CGFloat(self.controllerArray.count))
                     selectionIndicatorWidth = self.view.frame.width / CGFloat(self.controllerArray.count)
                 } else if self.menuItemWidthBasedOnTitleTextWidth {
-                    selectionIndicatorWidth = self.menuItemWidths[pageIndex]
-                    selectionIndicatorX += self.menuMargin
+                    selectionIndicatorWidth = self.menuItemWidths[pageIndex] + self.menuMargin
                     
                     if pageIndex > 0 {
                         for i in 0...(pageIndex - 1) {
@@ -643,7 +642,7 @@ public class CAPSPageMenu: UIViewController, UIScrollViewDelegate, UIGestureReco
             } else if menuItemWidthBasedOnTitleTextWidth {
                 // Base case being first item
                 var menuItemLeftBound : CGFloat = 0.0
-                var menuItemRightBound : CGFloat = menuItemWidths[0] + menuMargin + (menuMargin / 2)
+                var menuItemRightBound : CGFloat = menuItemWidths[0] + menuMargin
                 
                 if !(tappedPoint.x >= menuItemLeftBound && tappedPoint.x <= menuItemRightBound) {
                     for i in 1...controllerArray.count - 1 {
