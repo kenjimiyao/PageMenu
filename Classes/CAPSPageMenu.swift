@@ -377,7 +377,7 @@ public class CAPSPageMenu: UIViewController, UIScrollViewDelegate, UIGestureReco
         
         // Set new content size for menu scroll view if needed
         if menuItemWidthBasedOnTitleTextWidth {
-            menuScrollView.contentSize = CGSizeMake((totalMenuItemWidthIfDifferentWidths + menuMargin) + CGFloat(controllerArray.count) * menuMargin, menuHeight)
+            menuScrollView.contentSize = CGSizeMake(totalMenuItemWidthIfDifferentWidths + CGFloat(controllerArray.count) * menuMargin, menuHeight)
         }
         
         // Set selected color for title label of selected menu item
